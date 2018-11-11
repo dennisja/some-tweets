@@ -1,28 +1,40 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+import Tweets from './Tweets';
+import { LOCAL_API_URL, TWEETS_URL } from './configs';
+
+function App() {
+  const [error, setError] = useState(null);
+  const [tweets, setTweets] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const url = `${LOCAL_API_URL}${TWEETS_URL}`;
+  useEffect(async () => {
+    try {
+      const response = await axios.get(url);
+      setTweets(response.data.tweets);
+      setLoading(false);
+    } catch (error) {
+      if (error.request) {
+        setError(error.request);
+      } else if (error.response) {
+        setError(error.response);
+      } else {
+        setError(error);
+      }
+      setLoading(false);
+    }
+  }, []);
+
+  if (loading) {
+    return <div>loading..</div>;
   }
+
+  if (error) {
+    return <div>Error</div>;
+  }
+
+  return <Tweets tweets={tweets} />;
 }
 
 export default App;
