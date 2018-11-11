@@ -16,7 +16,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-and-serve": "yarn build && yarn serve",
-    "serve":"nodemon backend/server.js"
+    "serve": "nodemon backend/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,6 +28,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "dotenv": "^6.1.0",
     "nodemon": "^1.18.6"
   }
 }
