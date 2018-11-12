@@ -15,6 +15,7 @@ const TweetsColumn = styled.section`
 
 const TweetsColumnHeader = styled.header`
   background: green;
+  text-align: center;
 `;
 
 const TweetsColumnHeading = styled.h2`
@@ -25,16 +26,35 @@ const TweetsListWrapper = styled.ul`
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: 10px;
-  background-color: rgba(238, 238, 238, 0.9);
 `;
 
-const TweetListItem = styled.li`
+const TweetListItemWrapper = styled.li`
   list-style-type: none;
-  padding: 30px;
+  padding: 20px;
   display: block;
   border: 1px solid #eee;
   box-shadow: 1px 1px 1px 1px #eee;
   background-color: white;
+`;
+
+const TweetTime = styled.span`
+  color: rgba(0, 0, 0, 0.6);
+`;
+
+const TweetFooter = styled.div`
+  border-top: 1px solid rgba(238, 238, 238, 0.9);
+  width: 100%;
+  margin-top: 5px;
+  padding: 5px;
+`;
+
+const SeeOnTweeterLink = styled.a`
+  color: green;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export {
@@ -43,5 +63,8 @@ export {
   TweetsColumnHeader,
   TweetsColumnHeading,
   TweetsListWrapper,
-  TweetListItem,
+  TweetListItemWrapper,
+  TweetTime,
+  TweetFooter,
+  SeeOnTweeterLink,
 };
