@@ -1,7 +1,7 @@
 /**
  * calculates the difference between two time stamps converting it into a user friendly string
  * @param {number} current The current time stamp in milliseconds
- * @param {number} previous The previos time stamp in milliseconds
+ * @param {number} previous The previous time stamp in milliseconds
  */
 const timeDifference = (current, previous) => {
   const milliSecondsPerMinute = 60 * 1000;
@@ -49,9 +49,13 @@ export const timeAgo = (datetime) => {
 export const findAndReplaceUrl = (entities, text) => {
   const {
     urls: [tweetUrl],
+    media,
   } = entities;
+  let tweetMediaObject;
 
-  if (!tweetUrl) {
+  if (media) [tweetMediaObject] = media;
+
+  if (!tweetUrl && !tweetMediaObject) {
     return {
       text,
       url: null,
@@ -61,18 +65,23 @@ export const findAndReplaceUrl = (entities, text) => {
     };
   }
 
-  const urlRegex = new RegExp(tweetUrl.url, 'gi');
+  const urlToMatch = tweetUrl ? tweetUrl.url : tweetMediaObject.url;
+  const expandedUrl = tweetUrl
+    ? tweetUrl.expanded_url
+    : tweetMediaObject.expanded_url;
+  const urlRegex = new RegExp(urlToMatch, 'gi');
   let newTweetText = text.replace(urlRegex, ' ');
-  const isTwitterUrl = tweetUrl.expanded_url.includes('twitter');
+  const isTwitterUrl = expandedUrl.includes('twitter');
   const halfUrlRegex = /https:\/\/(t.co\/[0-9a-zA-Z]{0,}.{0,})?/g;
+
   if (halfUrlRegex.test(newTweetText)) {
     newTweetText = newTweetText.replace(halfUrlRegex, ' ');
   }
 
   return {
     text: newTweetText,
-    url: tweetUrl.url,
-    expandedUrl: tweetUrl.expanded_url,
+    url: urlToMatch,
+    expandedUrl,
     hasUrl: true,
     isTwitterUrl,
   };

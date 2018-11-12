@@ -16,6 +16,7 @@ const TweetsColumn = styled.section`
 const TweetsColumnHeader = styled.header`
   background: green;
   text-align: center;
+  padding: 5px;
 `;
 
 const TweetsColumnHeading = styled.h2`
@@ -57,6 +58,21 @@ const SeeOnTweeterLink = styled.a`
   }
 `;
 
+const StyledIcon = styled.div`
+  display: inline-block;
+  font-size: 100%;
+  color: green;
+  margin: 0 10px;
+`;
+
+const FooterLink = styled(SeeOnTweeterLink)`
+  color: rgba(0, 0, 0, 0.6),
+
+ &:hover {
+    color: #1da1f2;
+  }
+`;
+
 export {
   TweetsColumn,
   TweetsContainer,
@@ -67,4 +83,6 @@ export {
   TweetTime,
   TweetFooter,
   SeeOnTweeterLink,
+  StyledIcon,
+  FooterLink
 };
