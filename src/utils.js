@@ -40,3 +40,40 @@ export const timeAgo = (datetime) => {
   const updated = new Date(datetime).getTime();
   return timeDifference(now, updated);
 };
+
+/**
+ * Finds urls at the end of a tweet and replaces them with a link
+ * @param {object} entities The entities object from the twitter api
+ * @param {string} text The tweet text from the twitter api
+ */
+export const findAndReplaceUrl = (entities, text) => {
+  const {
+    urls: [tweetUrl],
+  } = entities;
+
+  if (!tweetUrl) {
+    return {
+      text,
+      url: null,
+      hasUrl: false,
+      expandedUrl: null,
+      isTwitterUrl: false,
+    };
+  }
+
+  const urlRegex = new RegExp(tweetUrl.url, 'gi');
+  let newTweetText = text.replace(urlRegex, ' ');
+  const isTwitterUrl = tweetUrl.expanded_url.includes('twitter');
+  const halfUrlRegex = /https:\/\/(t.co\/[0-9a-zA-Z]{0,}.{0,})?/g;
+  if (halfUrlRegex.test(newTweetText)) {
+    newTweetText = newTweetText.replace(halfUrlRegex, ' ');
+  }
+
+  return {
+    text: newTweetText,
+    url: tweetUrl.url,
+    expandedUrl: tweetUrl.expanded_url,
+    hasUrl: true,
+    isTwitterUrl,
+  };
+};

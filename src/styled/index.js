@@ -48,6 +48,15 @@ const TweetFooter = styled.div`
   padding: 5px;
 `;
 
+const SeeOnTweeterLink = styled.a`
+  color: green;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export {
   TweetsColumn,
   TweetsContainer,
@@ -56,5 +65,6 @@ export {
   TweetsListWrapper,
   TweetListItemWrapper,
   TweetTime,
-  TweetFooter
+  TweetFooter,
+  SeeOnTweeterLink,
 };
