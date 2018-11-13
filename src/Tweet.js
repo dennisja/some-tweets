@@ -34,7 +34,6 @@ export const TweetFooter = ({ created_at, retweet_count, linkToTweet }) => (
 );
 const Tweet = ({
   tweet: {
-    id,
     id_str,
     text,
     created_at,
