@@ -80,6 +80,20 @@ const StyledImage = styled.img`
   margin-bottom: 5px;
 `;
 
+const FAB = styled.button`
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  color: white;
+  background-color: green;
+  text-align: center;
+  z-index: 10;
+`;
+
 export {
   TweetsColumn,
   TweetsContainer,
@@ -93,4 +107,5 @@ export {
   StyledIcon,
   FooterLink,
   StyledImage,
+  FAB,
 };
