@@ -52,7 +52,7 @@ const Tweet = ({
     isTwitterUrl,
   } = findAndReplaceUrl(entities, text);
 
-  const linkToTweet = isTwitterUrl ? expandedUrl : `${TWEET_BASE_URL}${id_str}`;
+  const linkToTweet = `${TWEET_BASE_URL}${id_str}`;
   const { hasPhoto, photoUrl } = getAPhotoFromEntities({
     extended_entities,
     retweeted_status,
