@@ -42,11 +42,12 @@ const TweetTime = styled.span`
   color: rgba(0, 0, 0, 0.6);
 `;
 
-const TweetFooter = styled.div`
+const TweetFooterWrapper = styled.div`
   border-top: 1px solid rgba(238, 238, 238, 0.9);
   width: 100%;
   margin-top: 5px;
   padding: 5px;
+  text-align: center;
 `;
 
 const SeeOnTweeterLink = styled.a`
@@ -73,6 +74,12 @@ const FooterLink = styled(SeeOnTweeterLink)`
   }
 `;
 
+const StyledImage = styled.img`
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
 export {
   TweetsColumn,
   TweetsContainer,
@@ -81,8 +88,9 @@ export {
   TweetsListWrapper,
   TweetListItemWrapper,
   TweetTime,
-  TweetFooter,
+  TweetFooterWrapper,
   SeeOnTweeterLink,
   StyledIcon,
-  FooterLink
+  FooterLink,
+  StyledImage,
 };

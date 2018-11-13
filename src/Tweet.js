@@ -2,18 +2,47 @@ import React from 'react';
 import { FaTwitter, FaRetweet } from 'react-icons/fa';
 
 import {
-  TweetFooter,
+  TweetFooterWrapper,
   TweetTime,
   SeeOnTweeterLink,
   StyledIcon,
   FooterLink,
+  StyledImage,
 } from './styled';
-import { timeAgo, findAndReplaceUrl } from './utils';
+import { timeAgo, findAndReplaceUrl, getAPhotoFromEntities } from './utils';
 import IconProvider from './IconProvider';
+import { TWEET_BASE_URL } from './configs';
 
-const tweetBaseURL = 'https://twitter.com/i/web/status/';
+
+
+export const TweetFooter = ({ created_at, retweet_count, linkToTweet }) => (
+  <TweetFooterWrapper>
+    <TweetTime>{timeAgo(created_at)}</TweetTime>
+    <StyledIcon title={`${retweet_count} Retweets`}>
+      {`${retweet_count} `}
+      <IconProvider>
+        <FaRetweet />
+      </IconProvider>
+    </StyledIcon>
+
+    <FooterLink href={linkToTweet} target="_blank">
+      <IconProvider>
+        <FaTwitter />
+      </IconProvider>
+    </FooterLink>
+  </TweetFooterWrapper>
+);
 const Tweet = ({
-  tweet: { id, text, created_at, entities, retweet_count },
+  tweet: {
+    id,
+    id_str,
+    text,
+    created_at,
+    entities,
+    retweet_count,
+    extended_entities,
+    retweeted_status,
+  },
 }) => {
   const {
     text: tweetText,
@@ -22,10 +51,17 @@ const Tweet = ({
     url,
     isTwitterUrl,
   } = findAndReplaceUrl(entities, text);
-  const linkToTweet = isTwitterUrl ? expandedUrl : `${tweetBaseURL}${id}`;
+
+  const linkToTweet = isTwitterUrl ? expandedUrl : `${TWEET_BASE_URL}${id_str}`;
+  const { hasPhoto, photoUrl } = getAPhotoFromEntities({
+    extended_entities,
+    retweeted_status,
+  });
+
   return (
     <React.Fragment>
       {tweetText}
+      {hasPhoto && <StyledImage src={photoUrl} alt="" />}
       {hasUrl &&
         (isTwitterUrl ? (
           <SeeOnTweeterLink href={url} target="_blank">
@@ -36,21 +72,11 @@ const Tweet = ({
             Read More
           </SeeOnTweeterLink>
         ))}
-      <TweetFooter>
-        <TweetTime>{timeAgo(created_at)}</TweetTime>
-        <StyledIcon title={`${retweet_count} Retweets`}>
-          {`${retweet_count} `}
-          <IconProvider>
-            <FaRetweet />
-          </IconProvider>
-        </StyledIcon>
-
-        <FooterLink href={linkToTweet} target="_blank">
-          <IconProvider>
-            <FaTwitter />
-          </IconProvider>
-        </FooterLink>
-      </TweetFooter>
+      <TweetFooter
+        created_at={created_at}
+        retweet_count={retweet_count}
+        linkToTweet={linkToTweet}
+      />
     </React.Fragment>
   );
 };

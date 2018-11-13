@@ -86,3 +86,29 @@ export const findAndReplaceUrl = (entities, text) => {
     isTwitterUrl,
   };
 };
+
+export function getAPhotoFromEntities({ extended_entities, retweeted_status }) {
+  let hasPhoto = false;
+  let photoUrl = null;
+
+  const { media = [] } = extended_entities || {};
+  const { entities = {} } = retweeted_status || {};
+
+  function getPhotoFromMediaObject(mediaObject) {
+    if (mediaObject.type === 'photo') {
+      hasPhoto = true;
+      photoUrl = mediaObject.media_url_https;
+      return;
+    }
+  }
+
+  if (media && media.length >= 1) {
+    media.forEach(getPhotoFromMediaObject);
+  }
+
+  if (!hasPhoto && entities && entities.media && entities.media.length >= 1) {
+    entities.media.forEach(getPhotoFromMediaObject);
+  }
+
+  return { hasPhoto, photoUrl };
+}
