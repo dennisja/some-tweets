@@ -49,13 +49,13 @@ yarn
 
    > If you are running it the first time, you need to build the application
 
-   ```
+   ```sh
    yarn build-and-serve
    ```
 
    > If you are running it after a build
 
-   ```
+   ```sh
    yarn serve
    ```
 
@@ -66,3 +66,10 @@ yarn
    ```
 
    > We use jest under the hood hence the command accepts all other [jest cli options](https://jestjs.io/docs/en/cli)
+
+## Features
+
+- Click on Read More or See on Twitter to go the website containing extra details or the original tweet if its a retweet
+- Click on Twitter Icon to visit tweet on Twitter
+- Double click on heading to see tweets in a reverse order
+- Display Images for tweets which have images
