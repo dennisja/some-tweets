@@ -17,6 +17,7 @@
     "test": "yarn test-ci --watchAll"
   },
   "devDependencies": {
+    "coveralls": "^3.0.2",
     "lerna": "^3.4.3"
   }
 }
