@@ -3,3 +3,7 @@ node_modules
 
 .DS_Dstore
 .vscode
+
+package-lock.json
+
+.env
