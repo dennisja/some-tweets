@@ -8,10 +8,10 @@ import {
   StyledIcon,
   FooterLink,
   StyledImage,
-} from './styled';
-import { timeAgo, findAndReplaceUrl, getAPhotoFromEntities } from './utils';
+} from '../styled';
+import { timeAgo, findAndReplaceUrl, getAPhotoFromEntities } from '../utils';
 import IconProvider from './IconProvider';
-import { TWEET_BASE_URL } from './configs';
+import { TWEET_BASE_URL } from '../configs';
 
 
 
