@@ -135,3 +135,20 @@ export function getAPhotoFromEntities({ extended_entities, retweeted_status }) {
 
   return { hasPhoto, photoUrl };
 }
+
+export const getItemFromLocalStorage = (itemKey) => {
+  try {
+    return JSON.parse(localStorage.getItem(itemKey));
+  } catch (e) {
+    return null;
+  }
+};
+
+export const addItemToLocalStorage = (itemKey, item) => {
+  try {
+    localStorage.setItem(itemKey, JSON.stringify(item));
+    return true;
+  } catch (e) {
+    return null;
+  }
+};

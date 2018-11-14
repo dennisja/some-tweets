@@ -10,6 +10,8 @@ const THEME_NAMES = {
   red: 'red',
 };
 
+const ACTIVE_THEME_KEY = 'APP_ACTIVE_THEME';
+
 const THEMES = {
   default: {
     tweetText: 'black',
@@ -70,4 +72,11 @@ const THEMES = {
   },
 };
 
-export { LOCAL_API_URL, TWEETS_URL, TWEET_BASE_URL, THEMES, THEME_NAMES };
+export {
+  LOCAL_API_URL,
+  TWEETS_URL,
+  TWEET_BASE_URL,
+  THEMES,
+  THEME_NAMES,
+  ACTIVE_THEME_KEY,
+};

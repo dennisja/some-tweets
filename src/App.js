@@ -22,6 +22,7 @@ function App() {
   if (error) {
     return <div>Error</div>;
   }
+
   return (
     <ThemeProvider theme={theme}>
       <SetThemeContext.Provider value={{ setTheme }}>
