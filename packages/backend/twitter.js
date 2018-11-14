@@ -1,5 +1,5 @@
 const base64 = require('base-64');
-const configs = require('../configs');
+const configs = require('./configs');
 const axios = require('axios');
 
 const formatError = (e) => {

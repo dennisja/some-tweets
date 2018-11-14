@@ -1,37 +1,23 @@
 {
   "name": "tweetzyx",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dennisja/some-tweets.git",
+  "author": "dennisja <dennisjjagwe@gmail.com>",
+  "license": "MIT",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "base-64": "^0.1.0",
-    "express": "^4.16.4",
-    "react": "^16.7.0-alpha.0",
-    "react-dom": "^16.7.0-alpha.0",
-    "react-icons": "^3.2.2",
-    "react-modal": "^3.6.1",
-    "react-scripts": "2.1.1",
-    "styled-components": "^4.0.3"
+    "axios": "^0.18.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "serve": "nodemon backend/server.js",
-    "preserve": "yarn build"
+    "install": "lerna bootstrap",
+    "serve": "node packages/backend/server.js",
+    "preserve": "node build.js",
+    "test-ci": "cd packages/frontend && yarn test --coverage",
+    "test": "yarn test-ci --watchAll"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "devDependencies": {
-    "dotenv": "^6.1.0",
-    "nodemon": "^1.18.6"
+    "coveralls": "^3.0.2",
+    "lerna": "^3.4.3"
   }
 }

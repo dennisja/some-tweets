@@ -25,7 +25,7 @@ yarn
 
    - Using a .env file
 
-   Add a .env file in the root directory of the application which is similar to the [example .env file](.env.example)
+   Add a .env file in the backend directory of the application which is similar to the [example .env file](packges/backend/.env.example)
 
    - Setting Environment variables
 

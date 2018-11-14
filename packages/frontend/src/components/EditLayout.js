@@ -6,9 +6,9 @@ import {
   TweetsColumnHeader as Header,
   TweetsColumnHeading as Heading,
   EditLayoutSettingTitle,
-} from './styled';
-import { THEME_NAMES, THEMES } from './configs';
-import { SetThemeContext } from './context';
+} from '../styled';
+import { THEME_NAMES } from '../configs';
+import { SetThemeContext } from '../context';
 
 const customStyles = {
   content: {
@@ -30,7 +30,9 @@ Modal.defaultStyles.overlay = {
   zIndex: 19,
 };
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
 function EditLayoutModal({ isOpen, closeModal }) {
   const { setTheme } = useContext(SetThemeContext);
 

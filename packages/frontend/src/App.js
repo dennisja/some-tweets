@@ -2,13 +2,13 @@ import React from 'react';
 import { FaCog } from 'react-icons/fa';
 import { ThemeProvider } from 'styled-components';
 
-import Tweets from './Tweets';
+import Tweets from './components/Tweets';
 import { FAB } from './styled';
-import useTweetsResponse from './useTweetsResponse';
 import { TweetsSortContext, SetThemeContext } from './context';
-import EditLayoutModal from './EditLayout';
-import useModalState from './useModalState';
-import useTheme from './useTheme';
+import EditLayoutModal from './components/EditLayout';
+import useModalState from './hooks/useModalState';
+import useTheme from './hooks/useTheme';
+import useTweetsResponse from './hooks/useTweetsResponse';
 
 function App() {
   const { tweets, loading, error, setTweets } = useTweetsResponse();
