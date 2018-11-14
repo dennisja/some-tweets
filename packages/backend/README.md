@@ -22,13 +22,3 @@ yarn
    ```sh
    yarn start
    ```
-
-   > You need to be running the local server. See How to do it [here](../backend/README.md)
-
-5. Running tests
-
-   ```sh
-   yarn test
-   ```
-
-   > We use jest under the hood hence the command accepts all other [jest cli options](https://jestjs.io/docs/en/cli)
