@@ -22,6 +22,7 @@ function useTweetsResponse() {
       }
       setLoading(false);
     }
+    return ()=>{};
   }, []);
 
   return {

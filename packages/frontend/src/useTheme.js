@@ -20,6 +20,7 @@ function useTheme(initialThemeName = THEME_NAMES.default) {
     if (activeTheme) {
       setActiveThemeName(activeTheme);
     }
+    return ()=>{};
   }, []);
 
   return {
