@@ -7,7 +7,7 @@ import {
   TweetsColumnHeading as Heading,
   EditLayoutSettingTitle,
 } from './styled';
-import { THEME_NAMES, THEMES } from './configs';
+import { THEME_NAMES } from './configs';
 import { SetThemeContext } from './context';
 
 const customStyles = {

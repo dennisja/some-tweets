@@ -38,6 +38,7 @@ app.get('/tweets', async function(req, res) {
 
 // render application on other requests
 app.get('*', function(req, res) {
+  console.log(path.resolve(__dirname, '../build', 'index.html'))
   res.sendFile(path.resolve(__dirname, '../build', 'index.html'));
 });
 

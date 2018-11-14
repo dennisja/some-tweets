@@ -11,8 +11,8 @@
   },
   "scripts": {
     "install": "lerna bootstrap",
-    "serve": "nodemon backend/server.js",
-    "preserve": "cd frontend && yarn build"
+    "serve": "node packages/backend/server.js",
+    "preserve": "cd packages/frontend && yarn build && mv build ../build && cd ../.."
   },
   "devDependencies": {
     "lerna": "^3.4.3"
