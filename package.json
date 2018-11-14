@@ -18,8 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-and-serve": "yarn build && yarn serve",
-    "serve": "nodemon backend/server.js"
+    "serve": "nodemon backend/server.js",
+    "preserve": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"

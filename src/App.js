@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPencilAlt } from 'react-icons/fa';
+import { FaCog } from 'react-icons/fa';
 import { ThemeProvider } from 'styled-components';
 
 import Tweets from './Tweets';
@@ -29,7 +29,7 @@ function App() {
         <TweetsSortContext.Provider value={{ setTweets }}>
           <Tweets tweets={tweets} />
           <FAB aria-label="Edit Layout" id="edit-layout" onClick={openModal}>
-            <FaPencilAlt />
+            <FaCog />
           </FAB>
           <EditLayoutModal isOpen={modalIsOpen} closeModal={closeModal} />
         </TweetsSortContext.Provider>
