@@ -12,5 +12,8 @@
   "scripts": {
     "serve": "nodemon backend/server.js",
     "preserve": "cd frontend && yarn build"
+  },
+  "devDependencies": {
+    "lerna": "^3.4.3"
   }
 }
