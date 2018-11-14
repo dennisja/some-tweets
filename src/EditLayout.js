@@ -30,7 +30,9 @@ Modal.defaultStyles.overlay = {
   zIndex: 19,
 };
 
-Modal.setAppElement('#root');
+if (process.env.NODE_ENV !== 'test') {
+  Modal.setAppElement('#root');
+}
 function EditLayoutModal({ isOpen, closeModal }) {
   const { setTheme } = useContext(SetThemeContext);
 
