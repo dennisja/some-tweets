@@ -7,7 +7,7 @@ import {
   TweetsColumnHeading as Heading,
   EditLayoutSettingTitle,
 } from './styled';
-import { THEME_NAMES } from './configs';
+import { THEME_NAMES, THEMES } from './configs';
 import { SetThemeContext } from './context';
 
 const customStyles = {
@@ -52,20 +52,27 @@ function EditLayoutModal({ isOpen, closeModal }) {
         Change App Theme
       </EditLayoutSettingTitle>
       <ColorOptionsHolder aria-labelledby="change-color">
-        <ColorOption onClick={() => changeTheme(THEME_NAMES.default)} />
         <ColorOption
+          aria-label={`Change To ${THEME_NAMES.default} Theme`}
+          onClick={() => changeTheme(THEME_NAMES.default)}
+        />
+        <ColorOption
+          aria-label={`Change To ${THEME_NAMES.black} Theme`}
           bgColor={THEME_NAMES.black}
           onClick={() => changeTheme(THEME_NAMES.black)}
         />
         <ColorOption
+          aria-label={`Change To ${THEME_NAMES.blue} Theme`}
           bgColor={THEME_NAMES.blue}
           onClick={() => changeTheme(THEME_NAMES.blue)}
         />
         <ColorOption
+          aria-label={`Change To ${THEME_NAMES.purple} Theme`}
           bgColor={THEME_NAMES.purple}
           onClick={() => changeTheme(THEME_NAMES.purple)}
         />
         <ColorOption
+          aria-label={`Change To ${THEME_NAMES.red} Theme`}
           bgColor={THEME_NAMES.red}
           onClick={() => changeTheme(THEME_NAMES.red)}
         />
