@@ -1,30 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { FaCog } from 'react-icons/fa';
+import { ThemeProvider } from 'styled-components';
 
 import Tweets from './Tweets';
-import { LOCAL_API_URL, TWEETS_URL } from './configs';
+import { FAB } from './styled';
+import useTweetsResponse from './useTweetsResponse';
+import { TweetsSortContext, SetThemeContext } from './context';
+import EditLayoutModal from './EditLayout';
+import useModalState from './useModalState';
+import useTheme from './useTheme';
 
 function App() {
-  const [error, setError] = useState(null);
-  const [tweets, setTweets] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const url = `${LOCAL_API_URL}${TWEETS_URL}`;
-  useEffect(async () => {
-    try {
-      const response = await axios.get(url);
-      setTweets(response.data.tweets);
-      setLoading(false);
-    } catch (error) {
-      if (error.request) {
-        setError(error.request);
-      } else if (error.response) {
-        setError(error.response);
-      } else {
-        setError(error);
-      }
-      setLoading(false);
-    }
-  }, []);
+  const { tweets, loading, error, setTweets } = useTweetsResponse();
+  const { closeModal, openModal, modalIsOpen } = useModalState();
+  let { theme, setTheme } = useTheme();
 
   if (loading) {
     return <div>loading..</div>;
@@ -34,7 +23,19 @@ function App() {
     return <div>Error</div>;
   }
 
-  return <Tweets tweets={tweets} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <SetThemeContext.Provider value={{ setTheme }}>
+        <TweetsSortContext.Provider value={{ setTweets }}>
+          <Tweets tweets={tweets} />
+          <FAB aria-label="Edit Layout" id="edit-layout" onClick={openModal}>
+            <FaCog />
+          </FAB>
+          <EditLayoutModal isOpen={modalIsOpen} closeModal={closeModal} />
+        </TweetsSortContext.Provider>
+      </SetThemeContext.Provider>
+    </ThemeProvider>
+  );
 }
 
 export default App;

@@ -1,4 +1,12 @@
 /**
+ * Pluralizes a time interval
+ * @param {number} number The duration of the interval
+ * @param {string} textInSingular The interval definition
+ */
+const pluralizeTimeInterval = (number, textInSingular) =>
+  `${number} ${textInSingular}${number === 1 ? '' : 's'}`;
+
+/**
  * calculates the difference between two time stamps converting it into a user friendly string
  * @param {number} current The current time stamp in milliseconds
  * @param {number} previous The previous time stamp in milliseconds
@@ -21,13 +29,28 @@ const timeDifference = (current, previous) => {
   } else if (elapsed < milliSecondsPerHour) {
     return Math.round(elapsed / milliSecondsPerMinute) + ' min ago';
   } else if (elapsed < milliSecondsPerDay) {
-    return Math.round(elapsed / milliSecondsPerHour) + ' h ago';
+    return (
+      pluralizeTimeInterval(Math.round(elapsed / milliSecondsPerHour), 'hr') +
+      ' ago'
+    );
   } else if (elapsed < milliSecondsPerMonth) {
-    return Math.round(elapsed / milliSecondsPerDay) + ' days ago';
+    return (
+      pluralizeTimeInterval(Math.round(elapsed / milliSecondsPerDay), 'day') +
+      ' ago'
+    );
   } else if (elapsed < milliSecondsPerYear) {
-    return Math.round(elapsed / milliSecondsPerMonth) + ' month ago';
+    return (
+      pluralizeTimeInterval(
+        Math.round(elapsed / milliSecondsPerMonth),
+        'month',
+      ) + ' ago'
+    );
   } else {
-    return Math.round(elapsed / milliSecondsPerYear) + ' years ago';
+    return pluralizeTimeInterval(
+      Math.round(elapsed / milliSecondsPerYear),
+      'yr',
+      ' ago',
+    );
   }
 };
 
@@ -112,3 +135,20 @@ export function getAPhotoFromEntities({ extended_entities, retweeted_status }) {
 
   return { hasPhoto, photoUrl };
 }
+
+export const getItemFromLocalStorage = (itemKey) => {
+  try {
+    return JSON.parse(localStorage.getItem(itemKey));
+  } catch (e) {
+    return null;
+  }
+};
+
+export const addItemToLocalStorage = (itemKey, item) => {
+  try {
+    localStorage.setItem(itemKey, JSON.stringify(item));
+    return true;
+  } catch (e) {
+    return null;
+  }
+};

@@ -9,6 +9,7 @@
     "react": "^16.7.0-alpha.0",
     "react-dom": "^16.7.0-alpha.0",
     "react-icons": "^3.2.2",
+    "react-modal": "^3.6.1",
     "react-scripts": "2.1.1",
     "styled-components": "^4.0.3"
   },
@@ -17,8 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-and-serve": "yarn build && yarn serve",
-    "serve": "nodemon backend/server.js"
+    "serve": "nodemon backend/server.js",
+    "preserve": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"

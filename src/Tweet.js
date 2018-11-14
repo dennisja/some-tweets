@@ -34,7 +34,6 @@ export const TweetFooter = ({ created_at, retweet_count, linkToTweet }) => (
 );
 const Tweet = ({
   tweet: {
-    id,
     id_str,
     text,
     created_at,
@@ -52,7 +51,7 @@ const Tweet = ({
     isTwitterUrl,
   } = findAndReplaceUrl(entities, text);
 
-  const linkToTweet = isTwitterUrl ? expandedUrl : `${TWEET_BASE_URL}${id_str}`;
+  const linkToTweet = `${TWEET_BASE_URL}${id_str}`;
   const { hasPhoto, photoUrl } = getAPhotoFromEntities({
     extended_entities,
     retweeted_status,

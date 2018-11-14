@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
   TweetsColumn,
@@ -9,10 +9,15 @@ import {
   TweetsColumnHeading,
 } from './styled';
 import Tweet from './Tweet';
+import { TweetsSortContext } from './context';
 
-const Heading = (props) => (
-  <TweetsColumnHeader>
-    <TweetsColumnHeading>{props.children}</TweetsColumnHeading>
+const MAKE_SCHOOL = 'makeschool';
+const Y_COMBINATOR = 'ycombinator';
+const NEWS_Y_COMBINATOR = 'newsycombinator';
+
+const Heading = ({ children, ...otherProps }) => (
+  <TweetsColumnHeader {...otherProps}>
+    <TweetsColumnHeading>{children}</TweetsColumnHeading>
   </TweetsColumnHeader>
 );
 
@@ -27,19 +32,40 @@ const TweetList = ({ tweetList }) => (
 );
 
 function Tweets({ tweets }) {
-  const { makeschool, newsycombinator, ycombinator } = tweets;
+  let { makeschool, newsycombinator, ycombinator } = tweets;
+  const { setTweets } = useContext(TweetsSortContext);
+
+  function sortTweets(columnToSort) {
+    if (columnToSort === MAKE_SCHOOL) {
+      makeschool = [...makeschool].reverse();
+    }
+    if (columnToSort === Y_COMBINATOR) {
+      ycombinator = [...ycombinator].reverse();
+    }
+    if (columnToSort === NEWS_Y_COMBINATOR) {
+      newsycombinator = [...newsycombinator].reverse();
+    }
+    setTweets({ newsycombinator, ycombinator, makeschool });
+  }
+
   return (
     <TweetsContainer>
       <TweetsColumn>
-        <Heading>@makeschool tweets</Heading>
+        <Heading onDoubleClick={() => sortTweets(MAKE_SCHOOL)}>
+          @makeschool tweets
+        </Heading>
         <TweetList tweetList={makeschool} />
       </TweetsColumn>
       <TweetsColumn gridArea="two">
-        <Heading>@ycombinator tweets</Heading>
+        <Heading onDoubleClick={() => sortTweets(Y_COMBINATOR)}>
+          @ycombinator tweets
+        </Heading>
         <TweetList tweetList={ycombinator} />
       </TweetsColumn>
       <TweetsColumn gridArea="three">
-        <Heading>@newsycombinator tweets</Heading>
+        <Heading onDoubleClick={() => sortTweets(NEWS_Y_COMBINATOR)}>
+          @newsycombinator tweets
+        </Heading>
         <TweetList tweetList={newsycombinator} />
       </TweetsColumn>
     </TweetsContainer>
