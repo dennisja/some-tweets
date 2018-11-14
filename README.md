@@ -1,5 +1,7 @@
 # some-tweets
 
+[![CircleCI](https://circleci.com/gh/dennisja/some-tweets.svg?style=svg)](https://circleci.com/gh/dennisja/some-tweets) [![Coverage Status](https://coveralls.io/repos/github/dennisja/some-tweets/badge.svg?branch=master)](https://coveralls.io/github/dennisja/some-tweets?branch=master)
+
 It Just fetches the last 30 tweets of only three accounts
 
 ## Setting up the application
