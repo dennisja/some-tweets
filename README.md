@@ -71,8 +71,8 @@ yarn
 
 - Add auto refreshing of tweets
 - Drag and Drop columns to change their order & persisting their order on refresh
-- A Better Loader
+- A Better Loader and better control of loading states
 - Do some good Error Handling & notify users when network is down
 - Make the dark theme look better 😀
-- Make usernames and hashtags link to twitter profiles and hashtag pages
+- Make usernames and hashtags link to twitter profiles and hashtag pages 🎉
 - Make UI mobile friendly
