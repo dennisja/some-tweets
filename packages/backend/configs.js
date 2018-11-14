@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
-dotenv.load();
+const path = require('path');
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const { API_KEY, API_SECRET } = process.env;
 

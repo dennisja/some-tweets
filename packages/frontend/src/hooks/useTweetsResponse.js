@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { LOCAL_API_URL, TWEETS_URL } from './configs';
+import { LOCAL_API_URL, TWEETS_URL } from '../configs';
 
 function useTweetsResponse() {
   const [error, setError] = useState(null);

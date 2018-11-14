@@ -12,7 +12,7 @@
   "scripts": {
     "install": "lerna bootstrap",
     "serve": "node packages/backend/server.js",
-    "preserve": "cd packages/frontend && yarn build && mv build ../build && cd ../..",
+    "preserve": "node build.js",
     "test-ci": "cd packages/frontend && yarn test --coverage",
     "test": "yarn test-ci --watchAll"
   },

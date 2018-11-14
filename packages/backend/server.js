@@ -26,6 +26,7 @@ app.get('/tweets', async function(req, res) {
     1: { data: newsycombinator },
     2: { data: ycombinator },
   } = tweets;
+  // console.log(rest);
   res.set('Content-Type', 'application/json');
   res.send({
     tweets: {

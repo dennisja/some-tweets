@@ -7,9 +7,9 @@ import {
   TweetsListWrapper,
   TweetsColumnHeader,
   TweetsColumnHeading,
-} from './styled';
+} from '../styled';
 import Tweet from './Tweet';
-import { TweetsSortContext } from './context';
+import { TweetsSortContext } from '../context';
 
 const MAKE_SCHOOL = 'makeschool';
 const Y_COMBINATOR = 'ycombinator';
@@ -23,11 +23,13 @@ const Heading = ({ children, ...otherProps }) => (
 
 const TweetList = ({ tweetList }) => (
   <TweetsListWrapper>
-    {tweetList.map((tweet) => (
-      <TweetListItemWrapper key={tweet.id}>
-        <Tweet tweet={tweet} />
-      </TweetListItemWrapper>
-    ))}
+    {tweetList
+      ? tweetList.map((tweet) => (
+          <TweetListItemWrapper key={tweet.id}>
+            <Tweet tweet={tweet} />
+          </TweetListItemWrapper>
+        ))
+      : "Something Went Wrong. Tweets Couldn't be loaded"}
   </TweetsListWrapper>
 );
 
