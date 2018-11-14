@@ -1,5 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Modal from 'react-modal';
+import {
+  ColorOptionsHolder,
+  ColorOption,
+  TweetsColumnHeader as Header,
+  TweetsColumnHeading as Heading,
+  EditLayoutSettingTitle,
+} from './styled';
+import { THEME_NAMES } from './configs';
+import { SetThemeContext } from './context';
 
 const customStyles = {
   content: {
@@ -23,6 +32,12 @@ Modal.defaultStyles.overlay = {
 
 Modal.setAppElement('#root');
 function EditLayoutModal({ isOpen, closeModal }) {
+  const { setTheme } = useContext(SetThemeContext);
+
+  function changeTheme(themeName) {
+    setTheme(themeName);
+  }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -30,10 +45,31 @@ function EditLayoutModal({ isOpen, closeModal }) {
       style={customStyles}
       arai={{ labelledby: 'edit-header' }}
     >
-      <header>
-        <h2 id="edit-header">Edit Settings</h2>
-      </header>
-      Modal Settings Should Go Here
+      <Header>
+        <Heading id="edit-header">Edit Layout Settings</Heading>
+      </Header>
+      <EditLayoutSettingTitle id="change-color">
+        Change App Theme
+      </EditLayoutSettingTitle>
+      <ColorOptionsHolder aria-labelledby="change-color">
+        <ColorOption onClick={() => changeTheme(THEME_NAMES.default)} />
+        <ColorOption
+          bgColor={THEME_NAMES.black}
+          onClick={() => changeTheme(THEME_NAMES.black)}
+        />
+        <ColorOption
+          bgColor={THEME_NAMES.blue}
+          onClick={() => changeTheme(THEME_NAMES.blue)}
+        />
+        <ColorOption
+          bgColor={THEME_NAMES.purple}
+          onClick={() => changeTheme(THEME_NAMES.purple)}
+        />
+        <ColorOption
+          bgColor={THEME_NAMES.red}
+          onClick={() => changeTheme(THEME_NAMES.red)}
+        />
+      </ColorOptionsHolder>
     </Modal>
   );
 }

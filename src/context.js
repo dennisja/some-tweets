@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-const TweetsSortContext = React.createContext({ setTweets: ()=>{} })
+const TweetsSortContext = React.createContext({ setTweets: () => {} });
 
-export { TweetsSortContext }
+const SetThemeContext = React.createContext({ setTheme: () => {} });
+
+export { TweetsSortContext, SetThemeContext };

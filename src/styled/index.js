@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+const applyPrimaryColor = (props) => props.theme.primaryColor;
+const applySecondaryColor = (props) => props.theme.secondaryColor;
+const applyTweetBGColor = (props) => props.theme.tweetBGColor;
+const applyTweetTextColor = (props) => props.theme.tweetText;
+const applyTweetTimeColor = (props) => props.theme.tweetTimeColor;
+const applyLinksColor = (props) => props.theme.linksColor;
+
 const TweetsContainer = styled.main`
   display: grid;
   grid-template-areas: 'one two three';
@@ -14,13 +21,13 @@ const TweetsColumn = styled.section`
 `;
 
 const TweetsColumnHeader = styled.header`
-  background: green;
+  background: ${applyPrimaryColor};
   text-align: center;
   padding: 5px;
 `;
 
 const TweetsColumnHeading = styled.h2`
-  color: white;
+  color: ${applySecondaryColor};
 `;
 
 const TweetsListWrapper = styled.ul`
@@ -35,11 +42,12 @@ const TweetListItemWrapper = styled.li`
   display: block;
   border: 1px solid #eee;
   box-shadow: 1px 1px 1px 1px #eee;
-  background-color: white;
+  background-color: ${applyTweetBGColor};
+  color: ${applyTweetTextColor};
 `;
 
 const TweetTime = styled.span`
-  color: rgba(0, 0, 0, 0.6);
+  color: ${applyTweetTimeColor};
 `;
 
 const TweetFooterWrapper = styled.div`
@@ -51,7 +59,7 @@ const TweetFooterWrapper = styled.div`
 `;
 
 const SeeOnTweeterLink = styled.a`
-  color: green;
+  color: ${applyLinksColor};
   text-decoration: none;
 
   &:hover {
@@ -62,15 +70,15 @@ const SeeOnTweeterLink = styled.a`
 const StyledIcon = styled.div`
   display: inline-block;
   font-size: 100%;
-  color: green;
+  color: ${applyPrimaryColor};
   margin: 0 10px;
 `;
 
 const FooterLink = styled(SeeOnTweeterLink)`
-  color: rgba(0, 0, 0, 0.6),
+  color: ${(props) => props.footerLinkColor};
 
- &:hover {
-    color: #1da1f2;
+  &:hover {
+    color: ${(props) => props.footerLinkColorOnHover};
   }
 `;
 
@@ -88,10 +96,40 @@ const FAB = styled.button`
   height: 50px;
   border-radius: 50%;
 
-  color: white;
-  background-color: green;
+  color: ${applySecondaryColor};
+  background-color: ${applyPrimaryColor};
   text-align: center;
   z-index: 10;
+`;
+
+const ColorOptionsHolder = styled.div`
+  border: 1px solid #eee;
+  box-shadow: 1px 1px 1px 1px #eee;
+  background-color: white;
+  width: 100%;
+  height: 60px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  margin-top: 10px;
+`;
+
+const ColorOption = styled.button`
+  background-color: ${(props) => props.bgColor};
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
+ColorOption.defaultProps = {
+  bgColor: 'green',
+};
+
+const EditLayoutSettingTitle = styled.h3`
+  color: ${applyPrimaryColor};
+  margin-top: 10px;
 `;
 
 export {
@@ -108,4 +146,7 @@ export {
   FooterLink,
   StyledImage,
   FAB,
+  ColorOption,
+  ColorOptionsHolder,
+  EditLayoutSettingTitle,
 };
