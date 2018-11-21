@@ -78,3 +78,4 @@ yarn
 - Make the dark theme look better 😀
 - Make usernames and hashtags link to twitter profiles and hashtag pages 🎉
 - Make UI mobile friendly
+- Enabling a user change accounts, such that he/she never misses tweets from accounts he/she cares about
